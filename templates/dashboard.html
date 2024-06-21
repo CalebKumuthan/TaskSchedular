@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div> 
+        <div>
+            
+            <h1 class="page-header text-primary text-center">{{ user.name }}'s Dashboard</a></h3>
+            {% if mydatas %}
+            <a href="{% url 'addtask' user.id %}">Add Task</a><br><br>
+            <table>
+                <h3>My Tasks</h3>
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Task Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Assigned By</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                {% for data in mydatas %}
+                <tbody>
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{data.name}}</td>
+                        <td>{{ data.date_time|date:"d-m-Y" }}</td>
+                        <td>{{ data.date_time|date:"h:i A" }}</td>
+                        <td>{{ data.assigned_by.name }}</td>
+                        <td>{{ data.status }}</td>
+
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </div>
+
+    </div>
+</body>
+</html>
